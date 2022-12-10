@@ -1,0 +1,17 @@
+{
+    "name": "adrien/app",
+    "autoload": {
+        "psr-4": {
+            "App\\": "src/",
+            "DB\\": "lib/"
+         
+        }
+    },
+    "authors": [
+        {
+            "name": "AubourgA",
+            "email": "adrien.aubourg@hotmail.fr"
+        }
+    ]
+  
+}

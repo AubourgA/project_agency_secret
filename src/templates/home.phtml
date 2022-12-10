@@ -1,0 +1,13 @@
+
+<h1>C'est la page home</h1>
+
+<?php foreach($response as $res): ?>
+
+    <ul>
+        <li>NOM <?= $res['Name'] ?></li>
+        <li>PRENOPM <?= $res['Firstname'] ?></li>
+        <li>EMAIL <?= $res['Email'] ?></li>
+        <li>MDP <?= $res['Password'] ?></li>
+        <li>CREE LE <?= $res['CreatedAt'] ?></li>
+    </ul>
+ <?php endforeach; ?>
