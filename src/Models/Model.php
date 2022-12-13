@@ -19,7 +19,12 @@ class Model extends database
         return $query->fetchAll();
     }
 
-
+ public function find(string $email)
+ {
+    $query = $this->requete("SELECT * FROM  {$this->table} WHERE email = ?", [$email]);
+    return $query->fetch();
+ }
+  
 
     
     public function requete(string $sql, array $attributs = null)
@@ -28,7 +33,8 @@ class Model extends database
 
         if($attributs !== null) {
             $query = $this->db->prepare($sql);
-            $query->execute($attributs);
+             $query->execute($attributs);
+                
             return $query;
         } else {
             return $this->db->query($sql);

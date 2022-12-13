@@ -11,6 +11,7 @@ abstract class AbstractController
         
         //demarre le buffer de sortie - conserve en memoire
          ob_start();
+        
 
          //fichier a inclurre
          require_once  ROOT. '/src/templates/'.$file.'.phtml';
@@ -20,4 +21,10 @@ abstract class AbstractController
          //mettre contenu dans le fichier de base
          require_once  ROOT . '/src/templates/layout.phtml';
     }
+
+   
+
+    
+
+    
 }

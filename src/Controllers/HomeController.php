@@ -23,6 +23,13 @@ class HomeController extends AbstractController
       return $this->render('home', ['response' => $response]);
     }
 
+    public function edit(int $id)
+    {
+
+      $id = $id;
+      return $this->render('edit', ['id' => $id]);
+
+    }
 
 
 }

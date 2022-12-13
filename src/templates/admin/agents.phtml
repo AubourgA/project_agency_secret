@@ -1,0 +1,58 @@
+
+
+<div class="container main__block">
+
+    <div class="row main__wrapper">
+
+        <div class="col-2 menu__side">
+            <?php include 'menu.phtml' ?>
+        </div>
+
+        <div class="col-8">
+
+            <h2 class="title__h2 bar">Bienvue Administrateur : <span class="font--light"><?= $_SESSION['user']['name'] ?></span></h2>
+
+            <div class="block__type row">
+                <section class="col-12">
+                    <h3 class="text-center">Liste des Agents</h3>
+
+                    <button class="btn btn-info"><a href="create">AJOUTER AGENT</a></button>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">CODE</th>
+                                <th scope="col">NOM</th>
+                                <th scope="col">PRENOM</th>
+                                <th scope="col">SPECIALITE</th>
+                                <th scope="col">DATE NAISSANCE</th>
+                                <th scope="col">NATIONALITE</th>
+                                <th scope="col">ACTION</th>
+                              
+                            </tr>
+                        </thead>
+                        <tbody>
+                        
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td>
+                                    <a href="home/edit/4">EDITER</a>
+                                    <a href="delete/4">DELETE</a>
+                                </td>
+                            </tr>
+                            
+                        </tbody>
+
+                     </table>
+                </section>
+                
+            </div>
+        </div>
+    </div>
+</div>

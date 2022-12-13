@@ -1,13 +1,41 @@
 
-<h1>C'est la page home</h1>
+<div class="container home">
 
-<?php foreach($response as $res): ?>
+    <h1 class="title__h1 mb-4" >Liste des Missions de l'Agence</h1>
 
-    <ul>
-        <li>NOM <?= $res['Name'] ?></li>
-        <li>PRENOPM <?= $res['Firstname'] ?></li>
-        <li>EMAIL <?= $res['Email'] ?></li>
-        <li>MDP <?= $res['Password'] ?></li>
-        <li>CREE LE <?= $res['CreatedAt'] ?></li>
-    </ul>
- <?php endforeach; ?>
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">N°</th>
+                <th scope="col">Intitulé</th>
+                <th scope="col">Intitulé</th>
+                <th scope="col">Cible</th>
+                <th scope="col">Objectif</th>
+                <th scope="col">Disponiblité</th>
+                <th scope="col">Consulté</th>
+            </tr>
+        </thead>
+        <tbody>
+          
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+               
+                <td><a href="home/edit/4">voir</a>
+                </td>
+            </tr>
+            
+        </tbody>
+
+    </table>
+
+</div>
+
+
+
+
+

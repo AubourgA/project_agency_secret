@@ -41,6 +41,7 @@ class Routers
 
        //recuperer la méthode
        $method = $this->getMethod($array_request);
+     
        
        //correspondance entre le controller et la method si elle existe
         $this->matches_controller_method($controller, $method, $array_request);
@@ -75,6 +76,9 @@ class Routers
         $paramController = ucfirst($array_request[0]).'Controller';
       
         $controller = 'App\Controllers\\'.$paramController;
+       
+
+      
 
         return $controller;
     }
@@ -106,10 +110,10 @@ class Routers
  */
     public function matches_controller_method(string $controller, string $method, array $array_request)
     {
-        if(class_exists($controller,true)) {
-           
+      if(class_exists($controller,true)) {
+          
+       
             $controllerInstance = new $controller();
- 
             $method = $this->getMethod($array_request);
             
             if($method) {
@@ -119,7 +123,7 @@ class Routers
                     $methodParameter = $methodInfo->getParameters();
                     //recupere parameter dans l'uri
                     $argsRI = $this->getArgsRequest($array_request); 
-
+                  
                   if( !empty($methodParameter)  && isset($argsRI)) {
                     call_user_func( [$controllerInstance, $method], $argsRI);
                   } else if (empty($methodParameter) && $argsRI === null) {

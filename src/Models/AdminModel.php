@@ -10,5 +10,6 @@ class AdminModel extends Model
             $this->table = 'admin';
         }
 
+      
 
 }
