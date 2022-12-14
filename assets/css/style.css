@@ -295,6 +295,24 @@ min-width: 100px;
 /* ADMIN SECTION */
 /******************/
 
+/* HOME ADMIN*/
+
+.card__item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding:2rem 3rem;
+  width:95%;
+  margin:10px auto;
+  background: var(--ter-color);
+  border-radius:25px;
+}
+
+.card__title{
+  font-family: var(--title-font);
+}
+
+
     /* MENU*/
 .main__block {
   height:100%;
@@ -380,3 +398,12 @@ footer {
 
 
 
+@media screen and (max-width : 787px) {
+  
+  .side__menu {
+    align-items: center;
+  }
+   .menu__item-word {
+    display: none;
+   }
+}

@@ -6,7 +6,8 @@
 
     <div class="col-2 menu__side">
 
-        <?php include 'menu.phtml'; ?>
+        <?php //include 'menu.phtml'; ?>
+        <?php include (dirname(__FILE__). '/../menu.phtml') ?>
     </div>
 
     <div class="col-8">
@@ -17,7 +18,7 @@
             <article class="col-12 ">
                 <h3 class="text-center">Créer un nouvel agent</h3>            
             </article>
-            <form action="" method="POST" class="form__block">
+            <form action="/agents/create" method="POST" class="form__block">
                 <div class="form-group">
                     <label for="name">Nom</label>
                     <input type="text" id="name" name="name">
@@ -35,11 +36,19 @@
                     <input type="text" id="type" name="type">
                 </div>
                 <div class="form-group">
+                    <label for="specialite">specialite</label>
+                    <input type="text" id="specialite" name="specialite">
+                </div>
+                <div class="form-group">
+                    <label for="nationalite">nationalite</label>
+                    <input type="text" id="nationalite" name="nationalite">
+                </div>
+                <div class="form-group">
                     <label for="code">code</label>
                     <input type="text" id="code" name="code">
                 </div>
 
-                <button class="btn btn-secondary">CREER</button>
+                <button name="submit" class="btn btn-secondary">CREER</button>
             </form>
             
         </div>

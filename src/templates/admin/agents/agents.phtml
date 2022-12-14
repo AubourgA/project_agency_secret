@@ -5,7 +5,8 @@
     <div class="row main__wrapper">
 
         <div class="col-2 menu__side">
-            <?php include 'menu.phtml' ?>
+            <?php //include 'menu.phtml' ?>
+            <?php include (dirname(__FILE__). '/../menu.phtml') ?>
         </div>
 
         <div class="col-8">
@@ -42,8 +43,8 @@
                                 <td></td>
                                 <td></td>
                                 <td>
-                                    <a href="home/edit/4">EDITER</a>
-                                    <a href="delete/4">DELETE</a>
+                                    <a href="home/edit/4" class="btn btn-info">EDITER</a>
+                                    <a href="delete/4" class="btn btn-danger">DELETE</a>
                                 </td>
                             </tr>
                             

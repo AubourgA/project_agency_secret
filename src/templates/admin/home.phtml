@@ -11,7 +11,27 @@
         <div class="col-8">
 
             <h2 class="title__h2 bar">Bienvue Administrateur : <span class="font--light"><?= $_SESSION['user']['name'] ?></span></h2>
+            <div class="cards row">
+                <article class="card__item col-12">
+                    <h3 class="card__title">Nb Agents : </h3>
+                    <p calss="card__text"><?= $agents ?></p>
+                </article>
+                <article class="card__item">
+                    <h3 class="card__title">Nb Contacts : </h3>
+                    <p calss="card__text"><?= $contact ?></p>
+                </article>
+                <article class="card__item">
+                    <h3 class="card__title">Nb Planques : </h3>
+                    <p calss="card__text"><?= $planque ?></p>
+                </article>
+                <article class="card__item">
+                    <h3 class="card__title">Total Missions :</h3>
+                    <p calss="card__text"><?= $missions?></p>
+                </article>
+               
 
+
+            </div>
 
         </div>
 

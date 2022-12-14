@@ -6,29 +6,28 @@
     <table class="table">
         <thead>
             <tr>
-                <th scope="col">N°</th>
+                <th scope="col">#</th>
                 <th scope="col">Intitulé</th>
-                <th scope="col">Intitulé</th>
-                <th scope="col">Cible</th>
-                <th scope="col">Objectif</th>
-                <th scope="col">Disponiblité</th>
+                <th scope="col">Status</th>
+                <th scope="col">Date Debut</th>
+                <th scope="col">Date Fin</th>
+                <th scope="col">Type Mission</th>
                 <th scope="col">Consulté</th>
             </tr>
         </thead>
         <tbody>
-          
+          <?php foreach($missions as $mission): ?>
             <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-               
-                <td><a href="home/edit/4">voir</a>
+                <td><?= $mission['Id']?></td>
+                <td><?= $mission['Title']?></td>
+                <td><?= $mission['Status']?></td>
+                <td><?= $mission['Date_debut']?></td>
+                <td><?= $mission['Date_fin']?></td>
+                <td><?= $mission['Type_mission']?></td>
+                <td><a href="home/edit/<?=$mission['Id'] ?>">voir</a>
                 </td>
             </tr>
-            
+            <?php endforeach; ?>
         </tbody>
 
     </table>
