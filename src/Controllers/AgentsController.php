@@ -12,8 +12,12 @@ class AgentsController extends AbstractController
     {
         session_start();
         checkAccess::Check('home');
-   
-        return $this->render('admin\agents\agents', []);
+        $agent = new AgentsModel;
+        $agents = $agent->findAll();
+
+        return $this->render('admin\agents\agents', [
+            'agents' => $agents
+        ]);
     }
 
     public function create()
@@ -42,6 +46,8 @@ class AgentsController extends AbstractController
         $model = new AgentsModel;
         $agent = $model->hydrate($datas);
         $model->add($agent);
+
+        
         
         header('Location: /admin');
        
@@ -51,5 +57,16 @@ class AgentsController extends AbstractController
         return $this->render('admin\agents\createAgent', []);
     }
 
-   
+   public function delete(int $id)
+   {
+        session_start();
+        checkAccess::Check('home');
+
+        $deleteAgent = new AgentsModel;
+        $deleteAgent->delete($id);
+      
+        header('Location: '.$_SERVER['HTTP_REFERER']);
+
+   }
+
 }

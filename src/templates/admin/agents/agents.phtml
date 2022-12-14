@@ -34,19 +34,21 @@
                         </thead>
                         <tbody>
                         
+                        <?php foreach($agents as $item): ?>
                             <tr>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
+                                <td><?= $item['Id']?></td>
+                                <td><?= $item['Code']?></td>
+                                <td><?= $item['Name']?></td>
+                                <td><?= $item['Prenom']?></td>
+                                <td><?= $item['Specialite']?></td>
+                                <td><?= $item['Date_naissance']?></td>
+                                <td><?= $item['Nationality']?></td>
                                 <td>
-                                    <a href="home/edit/4" class="btn btn-info">EDITER</a>
-                                    <a href="delete/4" class="btn btn-danger">DELETE</a>
+                                    <a href="/edit/<?=$item['Id'] ?>" class ="btn btn-info">voir</a>
+                                    <a href="/agents/delete/<?=$item['Id'] ?>" class ="btn btn-danger">delete</a>
                                 </td>
                             </tr>
+                        <?php endforeach; ?>
                             
                         </tbody>
 

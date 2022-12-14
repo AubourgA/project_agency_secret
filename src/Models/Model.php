@@ -65,7 +65,7 @@ class Model extends database
 
     public function delete(int $id)
     {
-        return $this->requete('DELETE FROM' . $this->table.  'WHERE id = ?', [$id]);
+        return $this->requete('DELETE FROM ' . $this->table.  ' WHERE id = ?', [$id]);
     }
 
 
