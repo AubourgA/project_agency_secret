@@ -22,7 +22,7 @@ CREATE TABLE AGENTS (
     Specialite VARCHAR(50) NOT NULL,
     Name varchar(50) NOT NULL,
     Prenom varchar(50) NOT NULL,
-    Date_naissance DATETIME NOT NULL,
+    Date_naissance DATE NOT NULL,
     Type_mission varchar(100),
     Code int(11) NOT NULL,
     Nationality varchar(50) NOT NULL,
@@ -35,7 +35,7 @@ CREATE TABLE CIBLE (
     Id int NOT NULL AUTO_INCREMENT,
     Name varchar(50) NOT NULL,
     Prenom varchar(50) NOT NULL,
-    Date_naissance DATETIME NOT NULL,
+    Date_naissance DATE NOT NULL,
     Code int(11) NOT NULL,
     Nationality varchar(50) NOT NULL,
     PRIMARY KEY (Id)
@@ -48,7 +48,7 @@ CREATE TABLE CONTACT (
     Id int NOT NULL AUTO_INCREMENT,
     Name varchar(50) NOT NULL,
     Prenom varchar(50) NOT NULL,
-    Date_naissance DATETIME NOT NULL,
+    Date_naissance DATE NOT NULL,
     Code int(11) NOT NULL,
     Nationality varchar(50) NOT NULL,
     PRIMARY KEY (Id) 
@@ -80,30 +80,13 @@ CREATE TABLE MISSIONS (
     Code_name VARCHAR(50) NOT NULL,
     Agent_Id int NOT NULL,
     Cible_Id int NOT NULL,
-    PRIMARY KEY (Id),
-    FOREIGN KEY (Agent_Id) REFERENCES AGENTS(Id),
-    FOREIGN KEY (Cible_Id) REFERENCES CIBLE(Id)
-)
-ENGINE=INNODB;
-
--- creation de la table MIXED
-CREATE TABLE contact_mission (
-    Id int NOT NULL AUTO_INCREMENT,
-    Mission_Id int NOT NULL,
+    Planque_Id int NOT NULL,
     Contact_Id int NOT NULL,
     PRIMARY KEY (Id),
-    FOREIGN KEY (Mission_Id) REFERENCES MISSIONS(Id),
+    FOREIGN KEY (Agent_Id) REFERENCES AGENTS(Id),
+    FOREIGN KEY (Cible_Id) REFERENCES CIBLE(Id),
+    FOREIGN KEY (Planque_Id) REFERENCES PLANQUE(Id),
     FOREIGN KEY (Contact_Id) REFERENCES CONTACT(Id)
-)
-ENGINE=INNODB;
 
--- creation de la table MIXED
-CREATE TABLE planque_mission (
-    Id int NOT NULL AUTO_INCREMENT,
-    Mission_Id int NOT NULL,
-    Planque_Id int NOT NULL,
-    PRIMARY KEY (Id),
-    FOREIGN KEY (Mission_Id) REFERENCES MISSIONS(Id),
-    FOREIGN KEY (Planque_Id) REFERENCES PLANQUE(Id)
 )
 ENGINE=INNODB;

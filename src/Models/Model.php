@@ -41,6 +41,11 @@ class Model extends database
         return $query->fetch();
     }
   
+    public function findById(int $id)
+    {
+        $query = $this->requete("SELECT * FROM  {$this->table} WHERE id = ?", [$id]);
+        return $query->fetch();
+    }
 
     public function add(Model $model)
     {
@@ -62,6 +67,27 @@ class Model extends database
    
         return $this->requete('INSERT INTO ' . $this->table . '  (' . $liste_props . ') VALUES ( '.$liste_carac. ' )', $values);
     }
+
+    public function update(int $id, Model $model)
+    {
+        $props = [];
+        $values = [];
+
+        foreach($model as $prop => $value) {
+            if($value !== null && $prop !== 'db' && $prop !== 'table') {
+                $props[] = "$prop = ?";
+                $values[] = $value;
+            }
+        }
+
+        $values[] = $id;
+        
+        $list_props = implode(',', $props);
+        
+        return $this->requete('UPDATE '.$this->table.' SET '. $list_props.' WHERE Id = ?', $values);
+        
+    }
+
 
     public function delete(int $id)
     {

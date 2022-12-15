@@ -1,0 +1,59 @@
+
+
+<div class="container main__block">
+
+<div class="row main__wrapper">
+
+    <div class="col-2 menu__side">
+
+        <?php //include 'menu.phtml'; ?>
+        <?php include (dirname(__FILE__). '/../menu.phtml') ?>
+    </div>
+
+    <div class="col-8">
+
+        <h2 class="title__h2 bar">Bienvue Administrateur : <span class="font--light"><?= $_SESSION['user']['name'] ?></span></h2>
+
+        <div class="block__type row screen">
+            <article class="col-12 ">
+                <h3 class="text-center">Fiche de l'agent</h3>            
+            </article>
+            <form action="/agents/edit/<?= $agent['Id'] ?>" method="POST" class="form__block">
+                <input type="hidden" id="edit-agent" name="edit-agent">
+                <div class="form-group">
+                    <label for="name">Nom</label>
+                    <input type="text" id="name" name="Name" value="<?= $agent['Name'] ?>">
+                </div>
+                <div class="form-group">
+                    <label for="prenom">prenom</label>
+                    <input type="text" id="prenom" name="Prenom" value="<?= $agent['Prenom'] ?>">
+                </div>
+                <div class="form-group">
+                    <label for="naissance">Date de Naissance</label>
+                    <input type="text" id="naissance" name="Date_naissance" value="<?= $agent['Date_naissance'] ?>">
+                </div>
+                <div class="form-group">
+                    <label for="type">type mission</label>
+                    <input type="text" id="type" name="Type_mission" value="<?= $agent['Type_mission']?> ">
+                </div>
+                <div class="form-group">
+                    <label for="specialite">specialite</label>
+                    <input type="text" id="specialite" name="Specialite" value="<?= $agent['Specialite'] ?>">
+                </div>
+                <div class="form-group">
+                    <label for="nationalite">nationalite</label>
+                    <input type="text" id="nationalite" name="Nationality" value="<?= $agent['Nationality'] ?>">
+                </div>
+                <div class="form-group">
+                    <label for="code">code</label>
+                    <input type="text" id="code" name="Code" value="<?= $agent['Code'] ?>">
+                </div>
+
+                <button name="submit" class="btn btn-primary">MODIFIER</button>
+                <a  href="/agents/" class="btn btn-secondary">RETOUR</a>
+            </form>
+            
+        </div>
+    </div>
+</div>
+</div>

@@ -2,9 +2,6 @@
 
 namespace App\Controllers;
 
-
-
-use App\Models\AdminModel;
 use App\Models\MissionModel;
 use App\Controllers\AbstractController;
 
@@ -17,8 +14,6 @@ class HomeController extends AbstractController
     {
       
 
-    // $users = new AdminModel;
-    // $response = $users->findAll();
    $mission = new MissionModel;
    
    $missions = $mission->findAll();
