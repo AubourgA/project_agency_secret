@@ -1,0 +1,53 @@
+
+
+<div class="container main__block">
+
+<div class="row main__wrapper">
+
+    <div class="col-2 menu__side">
+
+        <?php //include 'menu.phtml'; ?>
+        <?php include (dirname(__FILE__). '/../menu.phtml') ?>
+    </div>
+
+    <div class="col-8">
+
+        <h2 class="title__h2 bar">Bienvue Administrateur : <span class="font--light"><?= $_SESSION['user']['name'] ?></span></h2>
+
+        <div class="block__type row screen">
+            <article class="col-12 ">
+                <h3 class="text-center">Fiche de la planque </h3>            
+            </article>
+
+       
+
+
+            <form action="/planque/edit/<?= $planque['Id'] ?>" method="POST" class="form__block">
+                <input type="hidden" id="edit-planque" name="edit-planque">
+                <div class="form-group">
+                    <label for="adress">Adress</label>
+                    <input type="text" id="adress" name="adress" value="<?= $planque['Adress'] ?>">
+                </div>
+                <div class="form-group">
+                    <label for="country">Country</label>
+                    <input type="text" id="country" name="country" value="<?= $planque['Country'] ?>">
+                </div>
+                <div class="form-group">
+                    <label for="naissance">Code</label>
+                    <input type="text" id="code" name="code" value="<?= $planque['Code'] ?>">
+                </div>
+              
+             
+                <div class="form-group">
+                    <label for="type">Type</label>
+                    <input type="text" id="type" name="type" value="<?= $planque['Type'] ?>">
+                </div>
+
+                <button name="submit" class="btn btn-primary">MODIFIER</button>
+                <a  href="/planque/" class="btn btn-secondary">RETOUR</a>
+            </form>
+            
+        </div>
+    </div>
+</div>
+</div>
