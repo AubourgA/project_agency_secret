@@ -25,10 +25,27 @@ class HomeController extends AbstractController
     public function edit(int $id)
     {
 
-      $id = $id;
-      return $this->render('edit', ['id' => $id]);
+      $missions = new MissionModel;
+      $mission = $missions->findById($id);
+
+       //recupereration des id des liste
+       $Agent_Name = $missions->findOneNameById('agents', 'Agent_Id', 'Id');
+       $cible_Name = $missions->findOneNameById('cible', 'Cible_Id', 'Id');
+       $Planque_Adress = $missions->findOneNameById('planque', 'Planque_Id', 'Id');
+       $Contact_Name = $missions->findOneNameById('contact', 'Contact_Id','Id');
+
+   
+     
+    
+      return $this->render('edit', [
+        'mission' => $mission,
+        'Agent' => $Agent_Name,
+        'Cible' => $cible_Name,
+        'Planque' => $Planque_Adress,
+        'Contact' => $Contact_Name
+
+      ]);
 
     }
-
 
 }

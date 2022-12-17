@@ -242,6 +242,9 @@ main {
   color:white;
 }
 
+.border__title {
+  color:var(--ter-color);
+}
 
 .table {
   color: var(--text-color);

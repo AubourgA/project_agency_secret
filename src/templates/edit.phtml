@@ -2,52 +2,113 @@
 
     <div class="bar__info py-3">
         <span><a href="/home"><i class="fa-solid fa-chevron-left"></i></a> Retour</span>
-        <h1 class="title__h1">Details de la missions n° <?= $id ?> </h1>
-        <p>Status : </p>
+        <h1 class="title__h1">Details de la missions n° <?= $mission['Id'] ?> </h1>
+        <p>Status : <?=  $mission['Status'] ?></p>
 
     </div>
+
+
+    
+    <div class="wrapper__grid">
+
+        <section class="row text-center my-4 ">
+            <article class="col-12 row">
+                <h3 class="col-4 title__col">Titre</h3>
+                <p class="col-8 text__col"><?= $mission['Title'] ?></p>
+            </article>
+            <article class="col-12 row mt-2">
+            <h3 class="col-4 title__col">Description</h3>
+                <p class="col-8 text__col"><?= $mission['Description'] ?></p>
+            </article>
+            <article class="col-12 row mt-2">
+            <h3 class="col-4 title__col">Nom de Code</h3>
+                <p class="col-8 text__col"><?= $mission['Code_name'] ?></p>
+            </article>
+        </section>
+
+        <section class="row text-center my-4 ">
+            <article class="col-12 row">
+                <h3 class="col-4 title__col">Date Debut</h3>
+                <p class="col-8 text__col"><?= $mission['Date_debut'] ?></p>
+            </article>
+            <article class="col-12 row mt-2">
+            <h3 class="col-4 title__col">Date Fin</h3>
+                <p class="col-8 text__col"><?= $mission['Date_fin'] ?></p>
+            </article>
+        </section>
+        
+        <div class="text-left border-bottom">
+            <h2 class="border__title">Objectifs :</h2>
+        </div>
+        <section class="row text-center my-4 ">
+            <article class="col-12 row">
+                <h3 class="col-4 title__col">Cible</h3>
+                <p class="col-8 text__col"><?= $Cible['Name'] ?></p>
+            </article>
+            <article class="col-12 row mt-2">
+                <h3 class="col-4 title__col">Agent Affecté</h3>
+                <p class="col-8 text__col"><?= $Agent['Name'] ?> <?= $Agent['Prenom'] ?></p>
+            </article>
+            <article class="col-12 row mt-2">
+                <h3 class="col-4 title__col">Contact sur place</h3>
+                <p class="col-8 text__col"><?= $Contact['Name'] ?> <?= $Contact['Prenom'] ?></p>
+            </article>
+        </section>
+        <div class="text-left border-bottom">
+            <h2 class="border__title">Planque :</h2>
+        </div>
+        <section class="row text-center my-4 ">
+            <article class="col-12 row">
+                <h3 class="col-4 title__col">Adresse</h3>
+                <p class="col-8 text__col"><?= $Planque['Adress'] ?></p>
+            </article>
+            <article class="col-12 row">
+                <h3 class="col-4 title__col">Pays</h3>
+                <p class="col-8 text__col"><?= $Planque['Country'] ?></p>
+            </article>
+       
+        </section>
+
+
+
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 
+
 
     <div class="wrapper__grid">
         <div class="row  p-4 text-center">
             <div class="col-2 ">
                 <p class="title__col" >Intitule :</p>
             </div>
-            <div class="col-2">
-                <p class="text__col">ex1</p>
-            </div>
+          
             <div class="col-2">
                 <p class="title__col">Contact :</p>
             </div>
             <div class="col-2">
-                <p class="text__col">Ex2</p>
+                <p class="text__col"><?= $Contact['Name'] ?></p>
             </div>
             <div class="col-2">
                 <p class="title__col">Date Début :</p>
             </div>
-            <div class="col-2">
-                <p class="text__col">Ex3</p>
-            </div>
+        
         </div>
 
         <div class="row text-center p-4">
-            <div class="col-2">
-                <p class="title__col">Descriptif :</p>
-            </div>
-            <div class="col-2">
-                <p class="text__col">ex1</p>
-            </div>
-            <div class="col-2">
-                <p class="title__col">Contact par :</p>
-            </div>
-            <div class="col-2">
-                <p class="text__col">Ex2</p>
-            </div>
-            <div class="col-2">
-                <p class="title__col">Date fin :</p>
-            </div>
-            <div class="col-2">
-                <p class="text__col">Ex3</p>
-            </div>
+    
+           
+      
         </div>
 
         <div class="row text-center p-4">
@@ -55,14 +116,9 @@
                 <p class="title__col">Cible :</p>
             </div>
             <div class="col-2">
-                <p class="text__col">ex1</p>
+                <p class="text__col"><?= $Cible['Name'] ?></p>
             </div>
-            <div class="col-2">
-                <p class="title__col">Spécialité Requise :</p>
-            </div>
-            <div class="col-2">
-                <p class="text__col"></p>
-            </div>
+          
 
         </div>
 
@@ -71,26 +127,19 @@
                 <p class="title__col">Pays :</p>
             </div>
             <div class="col-2">
-                <p class="text__col">ex1</p>
+                <p class="text__col"><?= $mission['Title'] ?></p>
             </div>
             <div class="col-2">
                 <p class="title__col">Planque:</p>
             </div>
             <div class="col-2">
-                <p class="text__col"></p>
+                <p class="text__col"><?= $Planque['Country'] ?></p>
             </div>
         </div>
 
-      <div class="row p-4">
-        <div class="col-2">
-            <p class="title__col">Categories :</p>
-        </div>
-        <div class="col-2 ">
-            <p class="text__col"></p>
-        </div>
-      </div>
+  
 
-    </div>
+    </div> -->
 
 
 
