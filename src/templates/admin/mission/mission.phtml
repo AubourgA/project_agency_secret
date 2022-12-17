@@ -1,0 +1,61 @@
+<div class="container main__block">
+
+<div class="row main__wrapper">
+
+    <div class="col-2 menu__side">
+        <?php //include 'menu.phtml' ?>
+        <?php include (dirname(__FILE__). '/../menu.phtml') ?>
+    </div>
+
+    <div class="col-8">
+
+        <h2 class="title__h2 bar">Bienvue Administrateur : <span class="font--light"><?= $_SESSION['user']['name'] ?></span></h2>
+
+        <div class="block__type row">
+            <section class="col-12">
+                
+                <h3 class="text-center">Liste des Missions</h3>
+                <!-- MESSAGE USER-->
+                <?php  if (!empty($_SESSION['success'])): ?>
+            <p class="alert alert-success"> <?=  $_SESSION['success']; unset($_SESSION['success']); ?></p>
+            <?php endif; ?>
+
+                <button class="btn btn-info"><a href="/planque/create">AJOUTER MISSION</a></button>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Intitulé</th>
+                            <th scope="col">Status</th>
+                            <th scope="col">Type Mission</th>
+                            <th scope="col">Date Debut</th>
+                            <th scope="col">Date Fin</th>
+                            <th scope="col">Consulté</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    
+                    <?php foreach($mission as $item): ?>
+                        <tr>
+                            <td><?= $item['Id']?></td>
+                            <td><?= $item['Titre']?></td>
+                            <td><?= $item['Status']?></td>
+                            <td><?= $item['Type_mission']?></td>
+                            <td><?= $item['Date_debut']?></td>
+                            <td><?= $item['Date_fin']?></td>
+                            <td>
+                                <a href="/mission/edit/<?=$item['Id'] ?>" class ="btn btn-info">voir</a>
+                                <a href="/mission/delete/<?=$item['Id'] ?>" class ="btn btn-danger">delete</a>
+                            </td>
+                        </tr>
+                    <?php endforeach; ?>
+                        
+                    </tbody>
+
+                 </table>
+            </section>
+            
+        </div>
+    </div>
+</div>
+</div>

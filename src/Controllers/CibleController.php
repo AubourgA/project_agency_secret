@@ -2,22 +2,21 @@
 
 namespace App\Controllers;
 
-use App\Models\ContactModel;
+use App\Models\CibleModel;
 use App\Security\checkAccess;
 
-class ContactController extends AbstractController
-
+class CibleController extends AbstractController
 {
     public function index()
     {
         session_start();
         checkAccess::Check('home');
 
-        $contact = new ContactModel;
-        $contacts = $contact->findAll();
+        $cible = new CibleModel;
+        $cibles = $cible->findAll();
 
-        return $this->render('admin\contact\contact', [
-            'contacts' => $contacts
+        return $this->render('admin\cible\cible', [
+            'cibles' => $cibles
         ]);
     }
 
@@ -34,31 +33,31 @@ class ContactController extends AbstractController
         $code =         isset($_POST['code']) ? htmlspecialchars($_POST['code']) : "";
         $nationality =  isset($_POST['nationality']) ? htmlspecialchars($_POST['nationality']) : "";
 
-       $contact = new ContactModel;
+       $cible = new CibleModel;
 
-       $contact->setName($nom)
+       $cible->setName($nom)
               ->setPrenom($prenom)
               ->setDate_naissance($datebirth)
               ->setCode($code)
               ->setNationality($nationality);
 
-        $contact->add();
+        $cible->add();
 
-        $_SESSION['success'] = " Contact a bien été ajouté en base de donnee ";
+        $_SESSION['success'] = " Cible a bien été ajouté en base de donnee ";
         
-        header('Location: /contact');
+        header('Location: /cible');
        }
-        return $this->render('admin\contact\createContact', []);
+        return $this->render('admin\cible\createCible', []);
     }
 
-
+    
    public function delete(int $id)
    {
         session_start();
         checkAccess::Check('home');
 
-        $deleteContact = new contactModel;
-        $deleteContact->delete($id);
+        $deleteCible = new CibleModel;
+        $deleteCible->delete($id);
       
         header('Location: '.$_SERVER['HTTP_REFERER']);
 
@@ -71,17 +70,17 @@ class ContactController extends AbstractController
     checkAccess::Check('home');
 
       //recuperer l'enregsitrement via l'id
-      $contactModel = new ContactModel;
-      $contact = $contactModel->findById($id);
+      $cibleModel = new CibleModel;
+      $cible = $cibleModel->findById($id);
 
       //verification si l'enregistrement existe
-        if(!$contact) {
+        if(!$cible) {
             header('Location: /admin');
             exit();
         }
 
     //si le formulaire a été envoyé pour modification
-    if (isset($_POST['edit-contact'])) {
+    if (isset($_POST['edit-cible'])) {
 
         $nom =          isset($_POST['Name']) ? htmlspecialchars($_POST['Name']) : "";
         $prenom =       isset($_POST['Prenom']) ? htmlspecialchars($_POST['Prenom']) : "";
@@ -90,8 +89,8 @@ class ContactController extends AbstractController
         $nationality =  isset($_POST['Nationality']) ? htmlspecialchars($_POST['Nationality']) : "";
 
         //creer un nouvell agent et inject dedans les valeur du formualire
-        $contactModif = new ContactModel;
-        $contactModif->setId($contact['Id'])
+        $cibleModif = new CibleModel;
+        $cibleModif->setId($cible['Id'])
                     ->setName($nom)
                     ->setPrenom($prenom)
                     ->setDate_naissance($datebirth)
@@ -99,17 +98,18 @@ class ContactController extends AbstractController
                     ->setNationality($nationality);
 
         //methode pour modfiier l'enregistrement
-        $contactModif->update();
+        $cibleModif->update();
        
-        header('Location: /contact/');
+        header('Location: /cible/');
        
     }
  
  
     
-    return $this->render('admin\contact\editContact', [
-        'contact' => $contact
+    return $this->render('admin\cible\editCible', [
+        'cible' => $cible
     ]);
    }
+
 
 }
