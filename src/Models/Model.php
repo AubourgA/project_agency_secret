@@ -47,13 +47,13 @@ class Model extends database
         return $query->fetch();
     }
 
-    public function add(Model $model)
+    public function add()
     {
         $props = [];
         $values = [];
         $caractere = [];
 
-        foreach($model as $prop => $value) {
+        foreach($this as $prop => $value) {
             if( $value !== null && $prop !== 'db' && $prop !== 'table') {
 
                 $props[] = $prop;
@@ -68,20 +68,20 @@ class Model extends database
         return $this->requete('INSERT INTO ' . $this->table . '  (' . $liste_props . ') VALUES ( '.$liste_carac. ' )', $values);
     }
 
-    public function update(int $id, Model $model)
+    public function update()
     {
         $props = [];
         $values = [];
 
-        foreach($model as $prop => $value) {
+        foreach($this as $prop => $value) {
             if($value !== null && $prop !== 'db' && $prop !== 'table') {
                 $props[] = "$prop = ?";
                 $values[] = $value;
             }
         }
 
-        $values[] = $id;
-        
+        $values[] = $this->Id;
+       
         $list_props = implode(',', $props);
         
         return $this->requete('UPDATE '.$this->table.' SET '. $list_props.' WHERE Id = ?', $values);
@@ -109,7 +109,7 @@ class Model extends database
         }
     }
 
-    public function hydrate(array $datas)
+    public function hydrate($datas)
     {
         foreach($datas as $key => $value) {
             //nom d setter

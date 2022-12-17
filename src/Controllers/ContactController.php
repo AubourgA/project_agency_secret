@@ -27,91 +27,89 @@ class ContactController extends AbstractController
         session_start();
         checkAccess::Check('home');
 
-//        if(isset($_POST['submit'])) {
-//         $nom =          isset($_POST['name']) ? htmlspecialchars($_POST['name']) : "";
-//         $prenom =       isset($_POST['prenom']) ? htmlspecialchars($_POST['prenom']) : "";
-//         $datebirth =     isset($_POST['naissance']) ? htmlspecialchars($_POST['naissance']) : "";
-//         $typemission =  isset($_POST['type']) ? htmlspecialchars($_POST['type']) : "";
-//         $code =         isset($_POST['code']) ? htmlspecialchars($_POST['code']) : "";
-//         $speciality =   isset($_POST['specialite']) ? htmlspecialchars($_POST['specialite']) : "";
-//         $nationality =  isset($_POST['nationality']) ? htmlspecialchars($_POST['nationality']) : "";
+       if(isset($_POST['submit'])) {
+        $nom =          isset($_POST['name']) ? htmlspecialchars($_POST['name']) : "";
+        $prenom =       isset($_POST['prenom']) ? htmlspecialchars($_POST['prenom']) : "";
+        $datebirth =     isset($_POST['naissance']) ? htmlspecialchars($_POST['naissance']) : "";
+        $code =         isset($_POST['code']) ? htmlspecialchars($_POST['code']) : "";
+        $nationality =  isset($_POST['nationality']) ? htmlspecialchars($_POST['nationality']) : "";
 
-//         $datas = [
-//             'name' => $nom,
-//             'prenom' => $prenom,
-//             'date_naissance' => $datebirth,
-//             'type_mission' => $typemission,
-//             'code' => $code,
-//             'specialite' => $speciality,
-//             'nationality' => $nationality
-//         ];
+       $contact = new ContactModel;
 
-//         $model = new AgentsModel;
-//         $agent = $model->hydrate($datas);
-//         $model->add($agent);
+       $contact->setName($nom)
+              ->setPrenom($prenom)
+              ->setDate_naissance($datebirth)
+              ->setCode($code)
+              ->setNationality($nationality);
+
+        $contact->add();
+
+        $_SESSION['success'] = " Contact a bien été ajouté en base de donnee ";
         
-//         header('Location: /admin');
-//        }
+        header('Location: /contact');
+       }
         return $this->render('admin\contact\createContact', []);
     }
 
 
-//    public function delete(int $id)
-//    {
-//         session_start();
-//         checkAccess::Check('home');
+   public function delete(int $id)
+   {
+        session_start();
+        checkAccess::Check('home');
 
-//         $deleteAgent = new AgentsModel;
-//         $deleteAgent->delete($id);
+        $deleteContact = new contactModel;
+        $deleteContact->delete($id);
       
-//         header('Location: '.$_SERVER['HTTP_REFERER']);
+        header('Location: '.$_SERVER['HTTP_REFERER']);
 
-//    }
+   }
 
-//    public function edit(int $id)
-//    {
+   public function edit(int $id)
+   {
 
-//     session_start();
-//     checkAccess::Check('home');
+    session_start();
+    checkAccess::Check('home');
 
-//     $model = new AgentsModel;
-//     $agent = $model->findById($id);
+      //recuperer l'enregsitrement via l'id
+      $contactModel = new ContactModel;
+      $contact = $contactModel->findById($id);
 
+      //verification si l'enregistrement existe
+        if(!$contact) {
+            header('Location: /admin');
+            exit();
+        }
 
-//     //si le formulaire a été envoyé pour modification
-//     if (isset($_POST['edit-agent'])) {
+    //si le formulaire a été envoyé pour modification
+    if (isset($_POST['edit-contact'])) {
 
-//         $nom =          isset($_POST['Name']) ? htmlspecialchars($_POST['Name']) : "";
-//         $prenom =       isset($_POST['Prenom']) ? htmlspecialchars($_POST['Prenom']) : "";
-//         $datebirth =     isset($_POST['Date_naissance']) ? htmlspecialchars($_POST['Date_naissance']) : "";
-//         $typemission =  isset($_POST['Type_mission']) ? htmlspecialchars($_POST['Type_mission']) : "";
-//         $code =         isset($_POST['Code']) ? htmlspecialchars($_POST['Code']) : "";
-//         $speciality =   isset($_POST['Specialite']) ? htmlspecialchars($_POST['Specialite']) : "";
-//         $nationality =  isset($_POST['Nationality']) ? htmlspecialchars($_POST['Nationality']) : "";
+        $nom =          isset($_POST['Name']) ? htmlspecialchars($_POST['Name']) : "";
+        $prenom =       isset($_POST['Prenom']) ? htmlspecialchars($_POST['Prenom']) : "";
+        $datebirth =     isset($_POST['Date_naissance']) ? htmlspecialchars($_POST['Date_naissance']) : "";
+        $code =         isset($_POST['Code']) ? htmlspecialchars($_POST['Code']) : "";
+        $nationality =  isset($_POST['Nationality']) ? htmlspecialchars($_POST['Nationality']) : "";
 
-//         $datas = [
-//             'name' => $nom,
-//             'prenom' => $prenom,
-//             'date_naissance' => $datebirth,
-//             'type_mission' => $typemission,
-//             'code' => $code,
-//             'specialite' => $speciality,
-//             'nationality' => $nationality
-//         ];
+        //creer un nouvell agent et inject dedans les valeur du formualire
+        $contactModif = new ContactModel;
+        $contactModif->setId($contact['Id'])
+                    ->setName($nom)
+                    ->setPrenom($prenom)
+                    ->setDate_naissance($datebirth)
+                    ->setCode($code)
+                    ->setNationality($nationality);
 
+        //methode pour modfiier l'enregistrement
+        $contactModif->update();
+       
+        header('Location: /contact/');
+       
+    }
  
-
-//        $update_agent = $model->hydrate($datas);
-//        $model->update($id, $update_agent);
-       
-//         header('Location: /agents/');
-       
-//     }
  
     
-//     return $this->render('admin\agents\editAgent', [
-//         'agent' => $agent
-//     ]);
-//    }
+    return $this->render('admin\contact\editContact', [
+        'contact' => $contact
+    ]);
+   }
 
 }

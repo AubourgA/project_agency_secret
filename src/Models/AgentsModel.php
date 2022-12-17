@@ -5,9 +5,9 @@ namespace App\Models;
 class AgentsModel extends Model
 {
 
-    protected $Id;
-    protected $Specialite;
-    protected $Name;
+    protected int $Id;
+    protected String $Specialite;
+    protected String $Name;
     protected $Prenom;
     protected $Date_naissance;
     protected $Type_mission;
@@ -35,7 +35,7 @@ class AgentsModel extends Model
      *
      * @return  self
      */ 
-    public function setNationality($Nationality)
+    public function setNationality(String $Nationality)
     {
         $this->Nationality = $Nationality;
 
@@ -168,5 +168,15 @@ class AgentsModel extends Model
     public function getId()
     {
         return $this->Id;
+    }
+
+     /**
+     * Get the value of Id
+     */ 
+    public function setId($Id)
+    {
+        $this->Id = $Id;
+
+        return $this;
     }
 }

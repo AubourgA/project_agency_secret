@@ -1,10 +1,12 @@
-# simply_router
-simply router PHP and return view with render method
+# app projet : agence d agent secret
 
-This router allow to get url page on application on type :
-monapp.com/controller/method/arg1
+panel d'administration qui permet un CRUD sur agent, contact, planque.
 
-ex: monapp.com/contact
-    monapp.com/contact/edit/4
+Liste des agents visible par tous.
+
+Page admin protégé 
+
+Projet en MVC - POO - PHP
+
     
 

@@ -10,12 +10,17 @@
         </div>
 
         <div class="col-8">
-
+            
+            
             <h2 class="title__h2 bar">Bienvue Administrateur : <span class="font--light"><?= $_SESSION['user']['name'] ?></span></h2>
-
+            
             <div class="block__type row">
                 <section class="col-12">
                     <h3 class="text-center">Liste des Agents</h3>
+                    <!-- MESSAGE USER-->
+                    <?php  if (!empty($_SESSION['success'])): ?>
+                    <p class="alert alert-success"> <?=  $_SESSION['success']; unset($_SESSION['success']); ?></p>
+                    <?php endif; ?>
 
                     <button class="btn btn-info"><a href="create">AJOUTER AGENT</a></button>
                     <table class="table">

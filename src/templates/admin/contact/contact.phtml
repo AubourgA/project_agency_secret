@@ -15,7 +15,12 @@
 
             <div class="block__type row">
                 <section class="col-12">
+                    
                     <h3 class="text-center">Liste des Contacts</h3>
+                    <!-- MESSAGE USER-->
+                    <?php  if (!empty($_SESSION['success'])): ?>
+                <p class="alert alert-success"> <?=  $_SESSION['success']; unset($_SESSION['success']); ?></p>
+                <?php endif; ?>
 
                     <button class="btn btn-info"><a href="/contact/create">AJOUTER CONTACT</a></button>
                     <table class="table">

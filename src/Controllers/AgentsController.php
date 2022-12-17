@@ -36,21 +36,24 @@ class AgentsController extends AbstractController
         $speciality =   isset($_POST['specialite']) ? htmlspecialchars($_POST['specialite']) : "";
         $nationality =  isset($_POST['nationality']) ? htmlspecialchars($_POST['nationality']) : "";
 
-        $datas = [
-            'name' => $nom,
-            'prenom' => $prenom,
-            'date_naissance' => $datebirth,
-            'type_mission' => $typemission,
-            'code' => $code,
-            'specialite' => $speciality,
-            'nationality' => $nationality
-        ];
-
-        $model = new AgentsModel;
-        $agent = $model->hydrate($datas);
-        $model->add($agent);
+ 
+      
         
-        header('Location: /admin');
+        $agent = new AgentsModel;
+
+        $agent->setName($nom)
+                ->setPrenom($prenom)
+                ->setDate_naissance($datebirth)
+                ->setType_mission($typemission)
+                ->setCode($code)
+                ->setSpecialite($speciality)
+                ->setNationality($nationality);
+
+        $agent->add();
+
+        $_SESSION['success'] = " Agent a bien été ajouté en base de donnee ";
+
+        header('Location: /agents');
        }
         return $this->render('admin\agents\createAgent', []);
     }
@@ -74,9 +77,16 @@ class AgentsController extends AbstractController
     session_start();
     checkAccess::Check('home');
 
-    $model = new AgentsModel;
-    $agent = $model->findById($id);
+    
+        //recuperer l'enregsitrement via l'id
+      $agentModel = new AgentsModel;
+      $agent = $agentModel->findById($id);
 
+      //verification si l'enregistrement existe
+        if(!$agent) {
+            header('Location: /admin');
+            exit();
+        }
 
     //si le formulaire a été envoyé pour modification
     if (isset($_POST['edit-agent'])) {
@@ -89,20 +99,19 @@ class AgentsController extends AbstractController
         $speciality =   isset($_POST['Specialite']) ? htmlspecialchars($_POST['Specialite']) : "";
         $nationality =  isset($_POST['Nationality']) ? htmlspecialchars($_POST['Nationality']) : "";
 
-        $datas = [
-            'name' => $nom,
-            'prenom' => $prenom,
-            'date_naissance' => $datebirth,
-            'type_mission' => $typemission,
-            'code' => $code,
-            'specialite' => $speciality,
-            'nationality' => $nationality
-        ];
+        //creer un nouvell agent et inject dedans les valeur du formualire
+        $agentModif = new AgentsModel;
+        $agentModif->setId($agent['Id'])
+                    ->setName($nom)
+                    ->setPrenom($prenom)
+                    ->setDate_naissance($datebirth)
+                    ->setType_mission($typemission)
+                    ->setSpecialite($speciality)
+                    ->setCode($code)
+                    ->setNationality($nationality);
 
- 
-
-       $update_agent = $model->hydrate($datas);
-       $model->update($id, $update_agent);
+        //methode pour modfiier l'enregistrement
+        $agentModif->update();
        
         header('Location: /agents/');
        
