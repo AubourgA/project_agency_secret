@@ -27,14 +27,14 @@ class AgentsController extends AbstractController
         session_start();
         checkAccess::Check('home');
 
-       if(isset($_POST['submit'])) {
-        $nom =          isset($_POST['name']) ? htmlspecialchars($_POST['name']) : "";
-        $prenom =       isset($_POST['prenom']) ? htmlspecialchars($_POST['prenom']) : "";
-        $datebirth =     isset($_POST['naissance']) ? htmlspecialchars($_POST['naissance']) : "";
-        $typemission =  isset($_POST['type']) ? htmlspecialchars($_POST['type']) : "";
-        $code =         isset($_POST['code']) ? htmlspecialchars($_POST['code']) : "";
-        $speciality =   isset($_POST['specialite']) ? htmlspecialchars($_POST['specialite']) : "";
-        $nationality =  isset($_POST['nationality']) ? htmlspecialchars($_POST['nationality']) : "";
+        if(isset($_POST['submit'])) {
+            $nom =          isset($_POST['name']) ? htmlspecialchars($_POST['name']) : "";
+            $prenom =       isset($_POST['prenom']) ? htmlspecialchars($_POST['prenom']) : "";
+            $datebirth =     isset($_POST['naissance']) ? htmlspecialchars($_POST['naissance']) : "";
+            $typemission =  isset($_POST['type']) ? htmlspecialchars($_POST['type']) : "";
+            $code =         isset($_POST['code']) ? htmlspecialchars($_POST['code']) : "";
+            $speciality =   isset($_POST['specialite']) ? htmlspecialchars($_POST['specialite']) : "";
+            $nationality =  isset($_POST['nationality']) ? htmlspecialchars($_POST['nationality']) : "";
 
  
       

@@ -1,0 +1,92 @@
+
+<div class="container main__block">
+
+<div class="row main__wrapper">
+
+    <div class="col-2 menu__side">
+
+        <?php //include 'menu.phtml'; ?>
+        <?php include (dirname(__FILE__). '/../menu.phtml') ?>
+    </div>
+
+    <div class="col-8">
+
+        <h2 class="title__h2 bar">Bienvue Administrateur : <span class="font--light"><?= $_SESSION['user']['name'] ?></span></h2>
+
+        <div class="block__type row screen">
+            <article class="col-12 ">
+                <h3 class="text-center">Créer une nouvelle mission</h3>            
+            </article>
+            <form action="/mission/create" method="POST" class="form__block">
+                <div class="form-group">
+                    <label for="title">Titre</label>
+                    <input type="text" id="title" name="Title">
+                </div>
+                <div class="form-group">
+                    <label for="Description">Description</label>
+                    <input type="text" id="Description" name="Description">
+                </div>
+                <div class="form-group">
+                    <label for="Status">Status</label>
+                    <input type="text" id="Status" name="Status">
+                </div>
+                <div class="form-group">
+                    <label for="date_debut">Date Debut </label>
+                    <input type="text" id="date_debut" name="date_debut">
+                </div>
+                <div class="form-group">
+                    <label for="date_fin">Date Fin </label>
+                    <input type="text" id="date_fin" name="date_fin">
+                </div>
+                <div class="form-group">
+                    <label for="Type_mission">Type Mission</label>
+                    <input type="text" id="Type_mission" name="Type_mission">
+                </div>
+                <div class="form-group">
+                    <label for="Code_name">Nom Code</label>
+                    <input type="text" id="Code_name" name="Code_name">
+                </div>
+                <div class="form-group">
+                    <label for="Agent">Agent</label>
+                    <select name="Agent" id="Agent">
+                        <option value="">--Please choose an option--</option>
+                        <?php foreach($agents as $item) : ?>
+                           <option value="<?= $item['Id']?>"><?= $item['Name'] ?></option>
+                        <?php endforeach; ?>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="Cible">Cible</label>
+                    <select name="Cible" id="Cible">
+                        <option value="">--Please choose an option--</option>
+                        <?php foreach($cibles as $item) : ?>
+                           <option value="<?= $item['Id']?>"><?= $item['Name'] ?></option>
+                        <?php endforeach; ?>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="Planque">Planque</label>
+                    <select name="Planque" id="Planque">
+                        <option value="">--Please choose an option--</option>
+                        <?php foreach($planques as $item) : ?>
+                           <option value="<?= $item['Id']?>"> Adress : <?= $item['Adress'] ?>  <?= $item['Country']?></option>
+                        <?php endforeach; ?>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="Contact">Contact</label>
+                    <select name="Contact" id="Contact">
+                        <option value="">--Please choose an option--</option>
+                        <?php foreach($contacts as $item) : ?>
+                           <option value="<?= $item['Id']?>"><?= $item['Name'] ?> <?= $item['Prenom']?></option>
+                        <?php endforeach; ?>
+                    </select>
+                </div>
+
+                <button name="submit" class="btn btn-secondary">CREER</button>
+            </form>
+            
+        </div>
+    </div>
+</div>
+</div>
