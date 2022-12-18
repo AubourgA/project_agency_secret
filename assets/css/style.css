@@ -116,6 +116,13 @@ body {
 overflow: hidden;
 }
 
+.error {
+  font-size: 0.7rem;
+  text-align: center;
+  color:rgb(129, 31, 31);
+  background: rgba(209, 105, 105, 0.822);
+  padding:0.5px 3px;
+}
 
 /*COMPOSANT*/
 .btn-main {

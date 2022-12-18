@@ -55,8 +55,10 @@ class LoginController extends AbstractController
                 
                 //verificaton existance mail dans BDD
                 if (!$response) {
-                    header('Location: /home');
-                    die();
+                    header('Location: /login');
+                    $_SESSION['error'] = "Votre email et/ou mot de passe sont incorrect";
+                    exit();
+                  
                 }
                 
                 if (isset($response)) {
@@ -73,6 +75,8 @@ class LoginController extends AbstractController
                         die();
                     } else {
                         header('Location: /login');
+                        $_SESSION['error'] = "Votre email et/ou mot de passe sont incorrect";
+                        exit();
                     }
                } 
         

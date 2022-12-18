@@ -12,14 +12,9 @@ class HomeController extends AbstractController
   
     public function index()
     {
-      
 
-   $mission = new MissionModel;
-   
-   $missions = $mission->findAll();
-  
-
-
+      $mission = new MissionModel;
+      $missions = $mission->findAll();
       return $this->render('home', ['missions' => $missions]);
     }
 

@@ -1,10 +1,15 @@
 
+
 <div class="container form-wrapper">
 
     <div class="form-content p-4">
 
         <h1 class="title__h1 mb-4">Authentification requise !</h1>
-        
+           <!-- MESSAGE USER-->
+     <?php  if (!empty($_SESSION['error'])): ?>
+                    <p class="error"> <?=  $_SESSION['error']; unset($_SESSION['error']); ?></p>
+     <?php endif; ?>
+     
         <form action="login/authentification" method = "POST"> 
             <div class="form-group">
                 <label for="email">Email address</label>
