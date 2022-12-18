@@ -19,6 +19,11 @@ class LoginController extends AbstractController
         return $this->render('login', []);
     }
     
+    /**
+     * Permet de verifier l'authentification d'un compte autoriser
+     *
+     * @return void
+     */
     public function authentification()
     {
         session_start();
@@ -56,15 +61,14 @@ class LoginController extends AbstractController
                 
                 if (isset($response)) {
                     //test password et celui en BDD
-                 
                     if (password_verify($password, $response['password'])) {
                          
                         
                        session_start();
+                       // stockage en session du nom de l'utilisateur
                         $_SESSION['user'] =  [
                             'name' => $response['name']
                         ];
-                        var_dump(session_status());
                         header('Location: /admin');
                         die();
                     } else {
@@ -78,6 +82,12 @@ class LoginController extends AbstractController
         header('Location: /home');
     } 
 
+    /**
+     * Deconnecte l'utilisateur
+     * supprime donnée stocker en session
+     *
+     * @return void
+     */
     public function logout()
     {
        

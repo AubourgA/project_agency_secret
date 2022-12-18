@@ -17,6 +17,7 @@ class AdminController extends AbstractController
       session_start();
       checkAccess::Check('home');
      
+      // recuperer tous les enregistrement de chaque table
       $agents = new AgentsModel;
       $NbAgent = count($agents->findAll());
       $contact = new ContactModel;

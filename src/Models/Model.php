@@ -123,4 +123,10 @@ class Model extends database
         return $this;
     }
 
+    public function pagination($first)
+    {
+        $query = $this->requete('SELECT * FROM ' . $this->table. ' LIMIT ' .$first.' , 9', []);
+        return $query->fetchAll();
+    }
+
 }

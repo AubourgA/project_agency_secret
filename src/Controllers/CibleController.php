@@ -20,6 +20,11 @@ class CibleController extends AbstractController
         ]);
     }
 
+    /**
+     * Creer un enregistrmeent
+     *
+     * @return void
+     */
     public function create()
     {
 
@@ -50,7 +55,12 @@ class CibleController extends AbstractController
         return $this->render('admin\cible\createCible', []);
     }
 
-    
+    /**
+     * suprime un enregsitrement
+     *
+     * @param integer $id
+     * @return void
+     */
    public function delete(int $id)
    {
         session_start();
@@ -63,6 +73,12 @@ class CibleController extends AbstractController
 
    }
 
+   /**
+    * Edit un enregistrement et le modifie
+    *
+    * @param integer $id
+    * @return void
+    */
    public function edit(int $id)
    {
 

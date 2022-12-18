@@ -10,7 +10,6 @@ class AgentsModel extends Model
     protected String $Name;
     protected $Prenom;
     protected $Date_naissance;
-    protected $Type_mission;
     protected $Code;
     protected $Nationality;
 
@@ -20,6 +19,7 @@ class AgentsModel extends Model
         
     }
 
+ 
     
 
     /**
@@ -62,25 +62,7 @@ class AgentsModel extends Model
         return $this;
     }
 
-    /**
-     * Get the value of Type_mission
-     */ 
-    public function getType_mission()
-    {
-        return $this->Type_mission;
-    }
 
-    /**
-     * Set the value of Type_mission
-     *
-     * @return  self
-     */ 
-    public function setType_mission($Type_mission)
-    {
-        $this->Type_mission = $Type_mission;
-
-        return $this;
-    }
 
     /**
      * Get the value of Date_naissance

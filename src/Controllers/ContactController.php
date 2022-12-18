@@ -21,6 +21,11 @@ class ContactController extends AbstractController
         ]);
     }
 
+    /**
+     * Creer un enregistrement
+     *
+     * @return void
+     */
     public function create()
     {
 
@@ -52,6 +57,12 @@ class ContactController extends AbstractController
     }
 
 
+    /**
+     * Supprime un enregistrement
+     *
+     * @param integer $id
+     * @return void
+     */
    public function delete(int $id)
    {
         session_start();
@@ -64,6 +75,12 @@ class ContactController extends AbstractController
 
    }
 
+   /**
+    * Edit un enregistrement et le modifie
+    *
+    * @param integer $id
+    * @return void
+    */
    public function edit(int $id)
    {
 

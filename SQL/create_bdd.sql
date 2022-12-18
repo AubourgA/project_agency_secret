@@ -23,7 +23,6 @@ CREATE TABLE AGENTS (
     Name varchar(50) NOT NULL,
     Prenom varchar(50) NOT NULL,
     Date_naissance DATE NOT NULL,
-    Type_mission varchar(100),
     Code int(11) NOT NULL,
     Nationality varchar(50) NOT NULL,
     PRIMARY KEY (Id)  

@@ -8,7 +8,7 @@ use App\Security\checkAccess;
 class AgentsController extends AbstractController
 
 {
-    public function index()
+    public function index(int $pages)
     {
         session_start();
         checkAccess::Check('home');
@@ -16,11 +16,28 @@ class AgentsController extends AbstractController
         $agent = new AgentsModel;
         $agents = $agent->findAll();
 
+        //pagination
+        
+        $nbItems =count($agents);
+       $nbitemInPage = 10;
+       $totalPage = ceil($nbItems / $nbitemInPage);
+       $fisrtitem = ($pages * $nbitemInPage) - $nbitemInPage;
+       $agentPagination = new AgentsModel;
+       $agentParPage = $agentPagination->pagination($fisrtitem);
+
+    
+
         return $this->render('admin\agents\agents', [
-            'agents' => $agents
+            'agents' => $agentParPage,
+            'nbPage' => $totalPage
         ]);
     }
 
+    /**
+     * Permet de creer un enregistrement
+     *
+     * @return void
+     */
     public function create()
     {
 
@@ -31,7 +48,6 @@ class AgentsController extends AbstractController
             $nom =          isset($_POST['name']) ? htmlspecialchars($_POST['name']) : "";
             $prenom =       isset($_POST['prenom']) ? htmlspecialchars($_POST['prenom']) : "";
             $datebirth =     isset($_POST['naissance']) ? htmlspecialchars($_POST['naissance']) : "";
-            $typemission =  isset($_POST['type']) ? htmlspecialchars($_POST['type']) : "";
             $code =         isset($_POST['code']) ? htmlspecialchars($_POST['code']) : "";
             $speciality =   isset($_POST['specialite']) ? htmlspecialchars($_POST['specialite']) : "";
             $nationality =  isset($_POST['nationality']) ? htmlspecialchars($_POST['nationality']) : "";
@@ -44,7 +60,6 @@ class AgentsController extends AbstractController
         $agent->setName($nom)
                 ->setPrenom($prenom)
                 ->setDate_naissance($datebirth)
-                ->setType_mission($typemission)
                 ->setCode($code)
                 ->setSpecialite($speciality)
                 ->setNationality($nationality);
@@ -53,12 +68,17 @@ class AgentsController extends AbstractController
 
         $_SESSION['success'] = " Agent a bien été ajouté en base de donnee ";
 
-        header('Location: /agents');
+        header('Location: /agents/index/1');
        }
         return $this->render('admin\agents\createAgent', []);
     }
 
-
+/**
+ * Supprime un enregistrement
+ *
+ * @param integer $id
+ * @return void
+ */
    public function delete(int $id)
    {
         session_start();
@@ -71,6 +91,12 @@ class AgentsController extends AbstractController
 
    }
 
+   /**
+    * Edit un enregistrement
+    *
+    * @param integer $id
+    * @return void
+    */
    public function edit(int $id)
    {
 
@@ -94,7 +120,6 @@ class AgentsController extends AbstractController
         $nom =          isset($_POST['Name']) ? htmlspecialchars($_POST['Name']) : "";
         $prenom =       isset($_POST['Prenom']) ? htmlspecialchars($_POST['Prenom']) : "";
         $datebirth =     isset($_POST['Date_naissance']) ? htmlspecialchars($_POST['Date_naissance']) : "";
-        $typemission =  isset($_POST['Type_mission']) ? htmlspecialchars($_POST['Type_mission']) : "";
         $code =         isset($_POST['Code']) ? htmlspecialchars($_POST['Code']) : "";
         $speciality =   isset($_POST['Specialite']) ? htmlspecialchars($_POST['Specialite']) : "";
         $nationality =  isset($_POST['Nationality']) ? htmlspecialchars($_POST['Nationality']) : "";
@@ -105,7 +130,6 @@ class AgentsController extends AbstractController
                     ->setName($nom)
                     ->setPrenom($prenom)
                     ->setDate_naissance($datebirth)
-                    ->setType_mission($typemission)
                     ->setSpecialite($speciality)
                     ->setCode($code)
                     ->setNationality($nationality);
@@ -122,5 +146,7 @@ class AgentsController extends AbstractController
         'agent' => $agent
     ]);
    }
+
+ 
 
 }

@@ -22,44 +22,56 @@
                     <p class="alert alert-success"> <?=  $_SESSION['success']; unset($_SESSION['success']); ?></p>
                     <?php endif; ?>
 
-                    <button class="btn btn-info"><a href="create">AJOUTER AGENT</a></button>
-                    <table class="table">
-                        <thead>
-                            <tr>
-                                <th scope="col">#</th>
-                                <th scope="col">CODE</th>
-                                <th scope="col">NOM</th>
-                                <th scope="col">PRENOM</th>
-                                <th scope="col">SPECIALITE</th>
-                                <th scope="col">DATE NAISSANCE</th>
-                                <th scope="col">NATIONALITE</th>
-                                <th scope="col">ACTION</th>
-                              
-                            </tr>
-                        </thead>
-                        <tbody>
-                        
-                        <?php foreach($agents as $item): ?>
-                            <tr>
-                                <td><?= $item['Id']?></td>
-                                <td><?= $item['Code']?></td>
-                                <td><?= $item['Name']?></td>
-                                <td><?= $item['Prenom']?></td>
-                                <td><?= $item['Specialite']?></td>
-                                <td><?= $item['Date_naissance']?></td>
-                                <td><?= $item['Nationality']?></td>
-                                <td>
-                                    <a href="/agents/edit/<?=$item['Id'] ?>" class ="btn btn-info">voir</a>
-                                    <a href="/agents/delete/<?=$item['Id'] ?>" class ="btn btn-danger">delete</a>
-                                </td>
-                            </tr>
-                        <?php endforeach; ?>
-                            
-                        </tbody>
+                    <button class="btn btn-info"><a href="/agents/create">AJOUTER AGENT</a></button>
+            
 
-                     </table>
+                       <table class="table">
+                           <thead>
+                               <tr>
+                                   <th scope="col">#</th>
+                                   <th scope="col">CODE</th>
+                                   <th scope="col">NOM</th>
+                                   <th scope="col">PRENOM</th>
+                                   <th scope="col" class="d-none d-lg-table-cell">SPECIALITE</th>
+                                   <th scope="col" class="d-none d-lg-table-cell">DATE NAISSANCE</th>
+                                   <th scope="col">NATIONALITE</th>
+                                   <th scope="col">ACTION</th>
+                                 
+                               </tr>
+                           </thead>
+                           <tbody>
+                           
+                           <?php foreach($agents as $item): ?>
+                               <tr class="text__table">
+                                   <td><?= $item['Id']?></td>
+                                   <td><?= $item['Code']?></td>
+                                   <td><?= $item['Name']?></td>
+                                   <td><?= $item['Prenom']?></td>
+                                   <td class="d-none d-lg-table-cell"><?= $item['Specialite']?></td>
+                                   <td class="d-none d-lg-table-cell"><?= $item['Date_naissance']?></td>
+                                   <td><?= $item['Nationality']?></td>
+                                   <td>
+                                       <a href="/agents/edit/<?=$item['Id'] ?>" class ="btn btn-sm btn-info">voir</a>
+                                       <a href="/agents/delete/<?=$item['Id'] ?>" class ="btn btn-sm btn-danger">delete</a>
+                                   </td>
+                               </tr>
+                           <?php endforeach; ?>
+                               
+                           </tbody>
+   
+                        </table>
+                   </div>
                 </section>
                 
+                <section class="pages">
+                            <ul class="pages__list d-flex justify-content-center ">
+                                <?php for($page = 1; $page<= $nbPage; $page++): ?>
+                                <li class="pages__list__item">
+                                    <a href="/agents/index/<?= $page ?>"><?= $page ?></a>
+                                </li>
+                                <?php endfor ?>
+                            </ul>
+                </section>
             </div>
         </div>
     </div>

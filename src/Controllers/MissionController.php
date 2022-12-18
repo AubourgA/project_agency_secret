@@ -11,6 +11,11 @@ use App\Security\checkAccess;
 
 class MissionController extends AbstractController
 {
+    /**
+     * Affiche liste des missions
+     *
+     * @return void
+     */
     public function index()
     {
         session_start();
@@ -24,6 +29,11 @@ class MissionController extends AbstractController
         ]); 
     }
 
+    /**
+     * creer enregistrement
+     *
+     * @return void
+     */
     public function create()
     {
         session_start();
@@ -44,7 +54,7 @@ class MissionController extends AbstractController
        
      
 
-
+        //verifie si formulaire a été envoyé
         if(isset($_POST['submit'])) {
             $titre =          isset($_POST['Title']) ? htmlspecialchars($_POST['Title']) : "";
             $description =       isset($_POST['Description']) ? htmlspecialchars($_POST['Description']) : "";
@@ -59,7 +69,7 @@ class MissionController extends AbstractController
             $planque_id = isset($_POST['Planque']) ? (int) htmlspecialchars($_POST['Planque']) : "";
             $contact_id = isset($_POST['Contact']) ? (int) htmlspecialchars($_POST['Contact']) : "";
 
-
+            //hydrate le model
             $mission = new MissionModel;
             $mission->setTitle($titre)
                     ->setDescription($description)
@@ -73,6 +83,7 @@ class MissionController extends AbstractController
                     ->setPlanque_Id($planque_id)
                     ->setContact_Id($contact_id);
      
+                    //ajoute en bdd
             $mission->add();
 
         }
@@ -84,6 +95,12 @@ class MissionController extends AbstractController
         ]);
     }
 
+    /**
+     * supprime enregistrement
+     *
+     * @param integer $id
+     * @return void
+     */
     public function delete(int $id)
     {
          session_start();
@@ -96,6 +113,12 @@ class MissionController extends AbstractController
  
     }
 
+    /**
+     * Edit et modifie un enregistrement
+     *
+     * @param integer $id
+     * @return void
+     */
     public function edit(int $id)
     {
         session_start();
@@ -163,6 +186,7 @@ class MissionController extends AbstractController
                         ->setPlanque_Id($planque_id)
                         ->setContact_Id($contact_id);
 
+            //met a jour l'enregistrement
             $missionModif->update();
             header('Location: /mission');
          }

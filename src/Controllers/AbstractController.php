@@ -3,6 +3,13 @@ namespace App\Controllers;
 
 abstract class AbstractController
 {
+    /**
+     * Permet d'afficher la vue
+     *
+     * @param string $file
+     * @param array $datas
+     * @return void
+     */
     public function render(string $file, $datas = [])
     {
         //ectraction des datas

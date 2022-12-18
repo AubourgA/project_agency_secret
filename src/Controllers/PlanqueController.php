@@ -21,6 +21,11 @@ class PlanqueController extends AbstractController
         ]);
     }
 
+    /**
+     * Creer un nouvel enregistrmeent
+     *
+     * @return void
+     */
     public function create()
     {
         session_start();
@@ -112,18 +117,13 @@ class PlanqueController extends AbstractController
         $planqueModif->update();
 
         $_SESSION['success'] = " Enregistrement a bien été modifié en base de donnee ";
-       
         header('Location: /planque');
        
     }
  
- 
-    
     return $this->render('admin\planque\editPlanque', [
         'planque' => $planque
     ]);
    }
-
-
 
 }
