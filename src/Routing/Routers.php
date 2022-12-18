@@ -165,7 +165,7 @@ class Routers
      * @param array $array_request
      * @return int|null
      */
-    public function getArgsRequest(array $array_request) :?int
+    public function getArgsRequest(array $array_request)
     {
        $is_args = $this->hasArgs($array_request);
       

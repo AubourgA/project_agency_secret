@@ -17,19 +17,20 @@ class AgentsController extends AbstractController
         $agents = $agent->findAll();
 
         //pagination
-        
-        $nbItems =count($agents);
-       $nbitemInPage = 10;
+       $currentPage = $pages;
+       $nbItems =count($agents);
+       $nbitemInPage = 8;
        $totalPage = ceil($nbItems / $nbitemInPage);
-       $fisrtitem = ($pages * $nbitemInPage) - $nbitemInPage;
+       $firstitem = ($pages * $nbitemInPage) - $nbitemInPage;
        $agentPagination = new AgentsModel;
-       $agentParPage = $agentPagination->pagination($fisrtitem);
+       $agentParPage = $agentPagination->pagination($firstitem, $nbitemInPage);
 
     
 
         return $this->render('admin\agents\agents', [
             'agents' => $agentParPage,
-            'nbPage' => $totalPage
+            'nbPage' => $totalPage,
+            'current' => $currentPage
         ]);
     }
 
@@ -87,7 +88,7 @@ class AgentsController extends AbstractController
         $deleteAgent = new AgentsModel;
         $deleteAgent->delete($id);
       
-        header('Location: '.$_SERVER['HTTP_REFERER']);
+        header('Location: /admin');
 
    }
 
@@ -137,7 +138,7 @@ class AgentsController extends AbstractController
         //methode pour modfiier l'enregistrement
         $agentModif->update();
        
-        header('Location: /agents/');
+        header('Location: /agents/index/1');
        
     }
  

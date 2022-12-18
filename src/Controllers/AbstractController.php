@@ -29,6 +29,26 @@ abstract class AbstractController
          require_once  ROOT . '/src/templates/layout.phtml';
     }
 
+    public function renderPart(string $file, $datas = [])
+    {
+        //ectraction des datas
+         extract($datas);
+
+        
+        //demarre le buffer de sortie - conserve en memoire
+         ob_start();
+        
+
+         //fichier a inclurre
+         require_once  ROOT. '/src/templates/'.$file.'.phtml';
+         //stop le buffer et le stock dans la varaiable
+        $contenu = ob_get_clean(); 
+
+       echo $contenu;
+         
+    }
+
+
    
 
     

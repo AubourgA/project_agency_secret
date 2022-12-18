@@ -109,23 +109,23 @@ class Model extends database
         }
     }
 
-    public function hydrate($datas)
-    {
-        foreach($datas as $key => $value) {
-            //nom d setter
-            $setter = 'set'.ucfirst($key);
-            //on check si setter existe
-            if(method_exists($this, $setter)) {
-                //si oui 
-                $this->$setter($value);
-            }
-        }
-        return $this;
-    }
+    // public function hydrate($datas)
+    // {
+    //     foreach($datas as $key => $value) {
+    //         //nom d setter
+    //         $setter = 'set'.ucfirst($key);
+    //         //on check si setter existe
+    //         if(method_exists($this, $setter)) {
+    //             //si oui 
+    //             $this->$setter($value);
+    //         }
+    //     }
+    //     return $this;
+    // }
 
-    public function pagination($first)
+    public function pagination($first, $limit)
     {
-        $query = $this->requete('SELECT * FROM ' . $this->table. ' LIMIT ' .$first.' , 9', []);
+        $query = $this->requete('SELECT * FROM ' . $this->table. ' LIMIT ' .$first.' , '.$limit, []);
         return $query->fetchAll();
     }
 

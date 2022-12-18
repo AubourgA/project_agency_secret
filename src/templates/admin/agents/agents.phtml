@@ -66,9 +66,16 @@
                 <section class="pages">
                             <ul class="pages__list d-flex justify-content-center ">
                                 <?php for($page = 1; $page<= $nbPage; $page++): ?>
-                                <li class="pages__list__item">
-                                    <a href="/agents/index/<?= $page ?>"><?= $page ?></a>
-                                </li>
+                                    <?php if($page === $current) :?>
+                                        <li class="pages__list__item active">
+                                            <a class="link__pagination" href="/agents/index/<?= $page ?>"><?= $page ?></a>
+                                        </li>
+                                    <?php else : ?>
+                                        <li class="pages__list__item">
+                                            <a class="link__pagination" href="/agents/index/<?= $page ?>"><?= $page ?></a>
+                                        </li>
+
+                                    <?php endif ?>
                                 <?php endfor ?>
                             </ul>
                 </section>

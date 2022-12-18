@@ -1,0 +1,28 @@
+<table class="table">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Intitulé</th>
+                <th scope="col">Status</th>
+                <th scope="col">Date Debut</th>
+                <th scope="col">Date Fin</th>
+                <th scope="col">Type Mission</th>
+                <th scope="col">Consulté</th>
+            </tr>
+        </thead>
+        <tbody>
+          <?php foreach($res as $mission): ?>
+            <tr>
+                <td><?= $mission['Id']?></td>
+                <td><?= $mission['Title']?></td>
+                <td><?= $mission['Status']?></td>
+                <td><?= $mission['Date_debut']?></td>
+                <td><?= $mission['Date_fin']?></td>
+                <td><?= $mission['Type_mission']?></td>
+                <td><a class="btn btn-info"href="home/edit/<?=$mission['Id'] ?>"><i class="fa-solid fa-eye"></i></a>
+                </td>
+            </tr>
+            <?php endforeach; ?>
+        </tbody>
+
+    </table>

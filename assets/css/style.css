@@ -138,15 +138,23 @@ overflow: hidden;
 }
 
 
-/* .pages{
-  display: block;
-  text-align: center;
-  justify-content: center;
+/* pagination */
+.pages .pages__list__item.active {
+  background-color: var(--text-color);
+  box-shadow: inset 0 0 4px 2px rgba(0,0,0,0.4);
 }
-   */
 
+.pages .pages__list__item.active a {
+  color: var(--main-color);
+   
+}
    .pages__list{
      gap:5px;
+   }
+
+   .pages__list__item {
+    border:1px solid var(--text-color);
+    padding:2px 8px;
    }
 /**********/
 /* HEADER*/

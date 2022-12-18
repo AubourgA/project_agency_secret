@@ -35,6 +35,18 @@ class MissionModel extends Model
     }
 
     /**
+     * Recherche mission par titre 
+     *
+     * @param [type] $str
+     * @return void
+     */
+    public function findByString($str)
+    {
+        $query = $this->requete(" SELECT * FROM  $this->table WHERE Title LIKE  '%$str%'  ", []);
+        return $query->fetchAll();
+    }
+
+    /**
      * Get the value of Id
      */ 
     public function getId()

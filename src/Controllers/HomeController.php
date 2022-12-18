@@ -19,9 +19,17 @@ class HomeController extends AbstractController
    $missions = $mission->findAll();
   
 
+
       return $this->render('home', ['missions' => $missions]);
     }
 
+
+    /**
+     * Visualiser les infos d'un enregistrement
+     *
+     * @param integer $id
+     * @return void
+     */
     public function edit(int $id)
     {
 
@@ -47,5 +55,23 @@ class HomeController extends AbstractController
       ]);
 
     }
+
+    public function search( $str)
+    {
+      $missionModel = new MissionModel;
+     
+       if(strlen($str) >= 3) {
+        $resultat = $missionModel->findByString($str);
+      } else {
+         $resultat = $missionModel->findAll();
+
+       }
+
+    
+     
+       return $this->renderPart('search', [ 'res' => $resultat]);
+    }
+
+
 
 }

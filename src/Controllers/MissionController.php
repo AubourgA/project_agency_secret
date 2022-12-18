@@ -86,6 +86,8 @@ class MissionController extends AbstractController
                     //ajoute en bdd
             $mission->add();
 
+            header('Location: /mission');
+
         }
         return $this->render('admin\mission\createMission', [
             'agents' => $agents,
